@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '2.3-SNAPSHOT', changing: true
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = "1.0"
+group = "com.lirxowo.carryonextend112"
+archivesBaseName = "carryonextend112"
+
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
+minecraft {
+    version = "1.12.2-14.23.5.2860"
+    runDir = "run"
+    mappings = "stable_39"
+    // useDepAts = true
+}
+
+repositories {
+    // CarryOn'u yerel bir "libs" klasöründen dahil ediyoruz.
+    // Attığınız carryon-1_12_2-1_12_7_23.jar dosyasını buraya kopyalayın:
+    //   libs/carryon-1.12.2-1.12.3.jar
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    // CarryOn sadece compile-time için gerekli; oyuncunun kendi kurduğu
+    // CarryOn jar'ı ile çalışma zamanında birleşir, biz onu paketlemiyoruz.
+    deobfCompile name: 'carryon-1.12.2-1.12.3'
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}

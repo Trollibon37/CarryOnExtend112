@@ -1,0 +1,12 @@
+[
+{
+  "modid": "carryonextend112",
+  "name": "CarryOnExtend",
+  "description": "Taşınan blok/varlığı fırlatmanı sağlar. Shift+Q ile fırlat, Shift+Scroll ile fırlatma gücünü ayarla. (CarryOn mod'una ek olarak çalışır, 1.20.1 sürümünün 1.12.2 portu.)",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "credits": "Original mod by LirxOwO. 1.12.2 port.",
+  "authorList": ["LirxOwO", "Port: Sevda"],
+  "dependencies": ["carryon"]
+}
+]
